@@ -30,19 +30,13 @@
                             <div id="DatosPersonales">
                                 <h4>Datos Personales</h4>
                                 <div class="form-group">
-                                    <label for="nombre">Sexo</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.SexoPersona" id="Masculino">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Masculino
-                                        </label>
-                                        <br/>
-                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.SexoPersona" id="Femenino" >
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Femenino
-                                        </label>
+                                    <label>Sexo</label>
+                                        <select @bind="datos.SexoPersona" class="form-control">
+                                            <option>-----Seleccione el sexo-----</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        </select>       
                                     </div>
-                                </div>
                                 <div class="form-group">
                                     <label for="apellidos">Apellidos</label>
                                     <input type="text" id="apellidos" name="apellidos" class="form-control" @bind-value="@datos.ApellidoPersona"
@@ -145,37 +139,45 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="nombre">Tipo de Documento de identidad</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.TipoDocumento" id="cedula" @onclick="MostrarDocumentoID">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Cedula
-                                        </label>
-                                        <br/>
-                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.TipoDocumento" id="pasaporte" @onclick="MostrarDocumentoID" >
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            Pasaporte
-                                        </label>
-                                        <br/>
-                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.TipoDocumento" id="DNI" @onclick="MostrarDocumentoID" >
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            DNI
-                                        </label>
+                                    <label>Tipos de Documento</label>
+                                        <select @bind="datos.TipoDocumento" class="form-control" @onclick="MostrarDocumentoID">
+                                                <option>-----Seleccione un documento-----</option>
+                                                <option value="Cedula">Cedula</option>
+                                                <option value="Pasaporte">Pasaporte</option>
+                                                <option value="DNI">DNI</option>
+                                        </select>
                                     </div>
-                                </div>
 
                                 <div class="form-group" style="display: none;" id="documentoID">
                                     <label for="docID">Documento de identidad</label>
                                     <input type="text" id="docID" name="docID" class="form-control" @bind-value="@datos.DocumentoIdentidad"
-                                    placeholder="Digite la ciudad" required />
+                                    placeholder="Digite el documento" required />
                                     <div class="invalid-feedback">
                                         documento es requerido!!!!.
                                     </div>
                                 </div>
                             </div>
+
                             <!--FORM DATOS familiares-->
                             <div style="display:none" id="DatosFamiliares">
                                 <h4>Datos Familiares</h4>
+                                <div class="form-group">
+                                    <label>Estado Civil</label>
+                                    <select @bind="datos.TipoDocumento" class="form-control" @onclick="MostrarInputConyugue">
+                                        <option>-----Seleccione estado civil-----</option>
+                                        <option value="Soltero">Soltero</option>
+                                        <option value="Casado">Casado</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="MostrarConyugue">
+                                    <label for="conyugue">Nombre Conyugue</label>
+                                    <input type="text" id="conyugue" name="conyugue" class="form-control" @bind-value="@datos.NombreConyuge"
+                                    placeholder="Digite el o la conyugue" required />
+                                    <div class="invalid-feedback">
+                                        conyugue es requerido!!!!.
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="lugar">Lugar</label>
                                     <input type="text" id="lugar" name="lugar" class="form-control"
@@ -193,7 +195,7 @@
                                     </div>
                                 </div>
                             </div> 
-                            <input type="submit" class="btn btn-success" value="Guardar Miembro"/>  
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
                         </form>
                     </div>
                 </div>
@@ -286,6 +288,10 @@
         await iJSRuntime.InvokeVoidAsync("MostrarDocumentoID");
     }
 
+    private async Task MostrarInputConyugue()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputConyugue");
+    }
     private async Task Mostrar2()
     {
         await iJSRuntime.InvokeVoidAsync("Mostrar2");

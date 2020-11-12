@@ -29,4 +29,8 @@ function MostrarDocumentoID()
 {
     document.getElementById('documentoID').style.display = 'block';
 }
-MostrarInputCiudadActual
+
+function MostrarInputConyugue()
+{
+    document.getElementById('MostrarConyugue').style.display = 'block';
+}
