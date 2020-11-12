@@ -1,0 +1,300 @@
+@using MiembrosIglesia.Data
+@inject IJSRuntime iJSRuntime
+@inject IServicioIglesia IST
+
+<button class="mdc-button mdc-button--raised" data-toggle="modal" data-target="#agregarTesoro">
+    <span class="mdc-button__label">Agregar Tesoro</span>
+</button>
+
+<div class="modal fade" id="agregarTesoro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div style="text-align: center;">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Reporte</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <nav>
+                    <button class="btn btn-success" @onclick="MostrarDatosPersonales">Datos Personales</button>
+                    <button class="btn btn-primary" @onclick="MostrarDatosFamiliares">Datos Familiares</button>
+                </nav>
+            </div>
+            <div class="modal-body">
+                <div style="margin-left:auto; margin-right:auto;">
+                    <div class="">
+                        <form class="was-validated" @onsubmit="HandleSubmit">
+                            <div id="DatosPersonales">
+                                <h4>Datos Personales</h4>
+                                <div class="form-group">
+                                    <label for="nombre">Sexo</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.SexoPersona" id="Masculino">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Masculino
+                                        </label>
+                                        <br/>
+                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.SexoPersona" id="Femenino" >
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Femenino
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellidos">Apellidos</label>
+                                    <input type="text" id="apellidos" name="apellidos" class="form-control" @bind-value="@datos.ApellidoPersona"
+                                    placeholder="Digite los apellidos" required />
+                                    <div class="invalid-feedback">
+                                        Apellido es requerido!!!!.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" id="nombre" name="nombre" class="form-control" @bind-value="@datos.NombrePersona"
+                                    placeholder="Digite el nombre" required />
+                                    <div class="invalid-feedback">
+                                        Nombre es requerido!!!!.
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="fecha">Fecha</label>
+                                    <input type="date" id="fecha" name="fecha" class="form-control" @bind-value="@datos.FechaNacimientoPersona"
+                                    placeholder="Digite la fecha" required />
+                                    <div class="invalid-feedback">
+                                        a fecha es requerida!!!!.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pais Origen</label>
+                                        <select @bind="datos.PaisOrigenPersona" class="form-control" @onclick="MostrarInputCiudad">
+                                            <option>--Seleccione pais de origen--</option>
+                                            @foreach (var item in ListaPaises)
+                                            {
+                                                <option value="@item.Paises">@item.Paises</option>
+                                            }
+                                        </select>
+                                </div>
+                                <div class="form-group" style="display: none;" id="ciudadNacimiento">
+                                    <label for="ciudadN">Ciudad Nacimiento</label>
+                                    <input type="text" id="ciudadN" name="ciudadN" class="form-control" @bind-value="@datos.CiudadOrigenPersona"
+                                    placeholder="Digite la ciudad" required />
+                                    <div class="invalid-feedback">
+                                        la ciudad es requerida!!!!.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Pais Actual</label>
+                                        <select @bind="datos.PaisActualPersona" class="form-control" @onclick="MostrarInputCiudadActual">
+                                            <option>--Seleccione pais residencia--</option>
+                                            @foreach (var item in ListaPaises)
+                                            {
+                                                <option value="@item.Paises">@item.Paises</option>
+                                            } 
+                                        </select>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="ciudadActual">
+                                    <label for="ciudadA">Ciudad Actual</label>
+                                    <input type="text" id="ciudadA" name="ciudadA" class="form-control" @bind-value="@datos.CiudadActualPersona"
+                                    placeholder="Digite la ciudad" required />
+                                    <div class="invalid-feedback">
+                                        la ciudad es requerida!!!!.
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="direccion">Direccion</label>
+                                    <textarea type="text" id="direccion" name="direccion" class="form-control" @bind="@datos.DireccionPersona"
+                                    placeholder="Digite la direccion" required>
+                                    </textarea>
+                                    
+                                    <div class="invalid-feedback">
+                                        Direccion es requerida!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="telefono">Telefono</label>
+                                    <input type="text" id="telefono" name="telefono" class="form-control" @bind-value="@datos.TelefonoPersona"
+                                    placeholder="Digite el telefono" required />
+                                    <div class="invalid-feedback">
+                                        telefono es requerido!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="celular">Celular</label>
+                                    <input type="text" id="celular" name="celular" class="form-control" @bind-value="@datos.CelularPersona"
+                                    placeholder="Digite el celular" required />
+                                    <div class="invalid-feedback">
+                                        celular es requerido!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="correo">Correo Electronico</label>
+                                    <input type="text" id="correo" name="correo" class="form-control" @bind-value="@datos.EmailPersona"
+                                    placeholder="Digite el correo" required />
+                                    <div class="invalid-feedback">
+                                        correo es requerido!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nombre">Tipo de Documento de identidad</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.TipoDocumento" id="cedula" @onclick="MostrarDocumentoID">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Cedula
+                                        </label>
+                                        <br/>
+                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.TipoDocumento" id="pasaporte" @onclick="MostrarDocumentoID" >
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            Pasaporte
+                                        </label>
+                                        <br/>
+                                        <input class="form-check-input" type="checkbox" @bind-value="@datos.TipoDocumento" id="DNI" @onclick="MostrarDocumentoID" >
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            DNI
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="documentoID">
+                                    <label for="docID">Documento de identidad</label>
+                                    <input type="text" id="docID" name="docID" class="form-control" @bind-value="@datos.DocumentoIdentidad"
+                                    placeholder="Digite la ciudad" required />
+                                    <div class="invalid-feedback">
+                                        documento es requerido!!!!.
+                                    </div>
+                                </div>
+                            </div>
+                            <!--FORM DATOS familiares-->
+                            <div style="display:none" id="DatosFamiliares">
+                                <h4>Datos Familiares</h4>
+                                <div class="form-group">
+                                    <label for="lugar">Lugar</label>
+                                    <input type="text" id="lugar" name="lugar" class="form-control"
+                                    placeholder="Digite el lugar" required />
+                                    <div class="invalid-feedback">
+                                        El lugar es requerido!!!!.
+                                    </div>
+                                    </div>
+                                <div class="form-group">
+                                    <label for="url">Referencia</label>
+                                    <input type="text" id="url" class="form-control"
+                                    placeholder="Digite la referencia" required />
+                                    <div class="invalid-feedback">
+                                        la referencia es requerida!!!!.
+                                    </div>
+                                </div>
+                            </div> 
+                            <input type="submit" class="btn btn-success" value="Guardar Miembro"/>  
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code 
+{
+    [Parameter]
+    public Guid Uid { get; set; }
+    private DatosMiembrosIglesia datos = new DatosMiembrosIglesia
+    {
+        Id = Guid.NewGuid(),
+        FechaNacimientoPersona = DateTime.Today,
+        FechaAceptacion = DateTime.Today,
+        FechaBautismo = DateTime.Today,
+        FechaConversion = DateTime.Today
+    };
+
+    private async Task HandleSubmit()
+    {
+        Console.WriteLine("Se Inicio El Guardado");
+        var status = await IST.SetMiembros(datos);
+        if (status)
+        {
+            datos = new DatosMiembrosIglesia
+            {
+                Id = Guid.NewGuid(),
+                FechaNacimientoPersona = DateTime.Today,
+                FechaAceptacion = DateTime.Today,
+                FechaBautismo = DateTime.Today,
+                FechaConversion = DateTime.Today
+            };
+            StateHasChanged();
+        }
+        Console.WriteLine(status)
+    ; Console.WriteLine("Finalizo El Guardado");
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            if (Uid != null)
+            {
+                datos.Id_Usuario = Uid;
+            }
+        }
+    }
+    public class NombrePaises
+    {
+        public string Paises { get; set; }
+    }
+
+    List<NombrePaises> ListaPaises = new List<NombrePaises>()
+    {
+    new NombrePaises() {Paises = "Republica Dominicana"},
+    new NombrePaises() {Paises = "Colombia"},
+    };
+
+    /*LLAMADA FUNCIONES JAVASCRIPT*/
+    private async Task MostrarDatosFamiliares()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosFamiliares");
+    }
+
+    private async Task MostrarDatosPersonales()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosPersonales");
+    }
+
+    private async Task MostrarInputCiudad()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputCiudad");
+    }
+
+    private async Task MostrarInputCiudadActual()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputCiudadActual");
+    }
+
+    private async Task MostrarDocumentoID()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDocumentoID");
+    }
+
+    private async Task Mostrar2()
+    {
+        await iJSRuntime.InvokeVoidAsync("Mostrar2");
+
+    }
+
+
+
+
+
+
+}

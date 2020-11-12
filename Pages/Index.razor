@@ -1,7 +1,15 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<AuthorizeView>
+    <Authorized>
+        <h3 href="Identity/Account/Manage">Hello, @context.User.Identity.Name!, sus tesoros estan a salvo con nosotros</h3>
+        <button class="mdc-button mdc-button--raised">
+            <span class="mdc-button__label">Contained Button</span>
+        </button>
+        <button class="btn btn-primary">Contained Button</button>
+    </Authorized>
+    <NotAuthorized>
+        <h2>No has iniciado sesion, no puede visualizar los miembros de su iglesia</h2>
+        <img src="/Error.gif" asp-append-version="true" width="300px"/>
+    </NotAuthorized>
+</AuthorizeView>

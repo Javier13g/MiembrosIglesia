@@ -1,0 +1,34 @@
+@page "/indexIglesia"
+@using Microsoft.AspNetCore.Identity
+@using MiembrosIglesia.Data
+@using MiembrosIglesia.Pages.PaginasMiembros
+@inject UserManager<Usuarios> UserManager
+
+<div class="col-xs-12">
+    <AggMiembros Uid="userId" />
+</div>
+<br/>
+<div>
+    <DatosMiembros Uid="userId" />
+</div>
+
+@code
+{
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    private Usuarios usu = new Usuarios();
+    private Guid userId;
+
+    private void evnt()
+    {
+        Console.WriteLine("enento");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+        usu = await UserManager.GetUserAsync(authState.User);
+        userId = usu.Id_Usuario;
+    }
+}

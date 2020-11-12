@@ -1,7 +1,8 @@
 ﻿@page
 @using Microsoft.AspNetCore.Identity
+@using MiembrosIglesia.Data
 @attribute [IgnoreAntiforgeryToken]
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<Usuarios> SignInManager
 @functions {
     public async Task<IActionResult> OnPost()
     {
