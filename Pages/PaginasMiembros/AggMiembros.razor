@@ -10,8 +10,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <div style="text-align: center;">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Reporte</h5>
+                <div>
+                    <h5 style="text-align: justify;" class="modal-title" id="exampleModalLabel">Agregar Miembros</h5>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -19,8 +19,28 @@
             </div>
             <div class="modal-header">
                 <nav>
-                    <button class="btn btn-success" @onclick="MostrarDatosPersonales">Datos Personales</button>
-                    <button class="btn btn-primary" @onclick="MostrarDatosFamiliares">Datos Familiares</button>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosPersonales">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">people</i>
+                        <span class="mdc-button__label">Datos Personales</span>
+                    </button>
+
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosFamiliares">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">family_restroom</i>
+                        <span class="mdc-button__label">Datos Familiares</span>
+                    </button>
+                    <p></p>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosLaborales">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">engineering</i>
+                        <span class="mdc-button__label">Datos Laborales</span>
+                    </button>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosEclesiasticos">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">add</i>
+                        <span class="mdc-button__label">Datos Eclesiasticos</span>
+                    </button>
                 </nav>
             </div>
             <div class="modal-body">
@@ -36,7 +56,7 @@
                                             <option value="Masculino">Masculino</option>
                                             <option value="Femenino">Femenino</option>
                                         </select>       
-                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label for="apellidos">Apellidos</label>
                                     <input type="text" id="apellidos" name="apellidos" class="form-control" @bind-value="@datos.ApellidoPersona"
@@ -105,10 +125,6 @@
                                     <textarea type="text" id="direccion" name="direccion" class="form-control" @bind="@datos.DireccionPersona"
                                     placeholder="Digite la direccion" required>
                                     </textarea>
-                                    
-                                    <div class="invalid-feedback">
-                                        Direccion es requerida!!!!.
-                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -178,14 +194,25 @@
                                         conyugue es requerido!!!!.
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="lugar">Lugar</label>
-                                    <input type="text" id="lugar" name="lugar" class="form-control"
-                                    placeholder="Digite el lugar" required />
+                                    <label>Tiene hijos?</label>
+                                    <select @bind="datos.Hijos" class="form-control" @onclick="MostrarInputHijos">
+                                        <option>-----Seleccione una opcion-----</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="MostrarHijos">
+                                    <label for="numHijos"></label>
+                                    <input type="text" id="numHijos" name="numHijos" class="form-control" @bind-value="@datos.NumeroHijos"
+                                    placeholder="Digite cantidad de hijos, en caso contrario, diga que no" required />
                                     <div class="invalid-feedback">
-                                        El lugar es requerido!!!!.
+                                        este campo es requerido!!!!.
                                     </div>
-                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="url">Referencia</label>
                                     <input type="text" id="url" class="form-control"
@@ -194,7 +221,115 @@
                                         la referencia es requerida!!!!.
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
+                            
+                            <div style="display: none;" id="DatosLaborales">
+                                <!--DATOS LABORALES-->
+                                <div class="form-group">
+                                    <label for="profesion">Profesion</label>
+                                    <input type="text" id="profesion" name="profesion" class="form-control" @bind-value="@datos.ProfesionPersona"
+                                    placeholder="Digite la profesion" required />
+                                    <div class="invalid-feedback">
+                                        Profesion es requerido!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ocupacion">Ocupacion Actual</label>
+                                    <input type="text" id="ocupacion" name="ocupacion" class="form-control" @bind-value="@datos.OcupacionPersona"
+                                    placeholder="Digite la ocupacion" required />
+                                    <div class="invalid-feedback">
+                                        Ocupacion es requerido!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="empresa">Nombre de la empresa o negocio</label>
+                                    <input type="text" id="empresa" name="empresa" class="form-control" @bind-value="@datos.NombreEmpresa"
+                                    placeholder="Digite la empresa" required />
+                                    <div class="invalid-feedback">
+                                        Empresa es requerida!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="telefonoLab">Telefono</label>
+                                    <input type="text" id="telefonoLab" name="telefonoLab" class="form-control" @bind-value="@datos.TelefonoEmpresa"
+                                    placeholder="Digite el telefono" required />
+                                    <div class="invalid-feedback">
+                                        telefono es requerido!!!!.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="DatosEclesiasticos">
+                                <div class="form-group">
+                                    <label for="fechaConversion">Fecha de Conversion</label>
+                                    <input type="date" id="fechaConversion" name="fechaConversion" class="form-control" @bind-value="@datos.FechaConversion"
+                                    placeholder="Digite la fecha" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaAceptacion">Fecha en que fue aceptado formalmente como miembro de la Iglesia</label>
+                                    <input type="date" id="fechaAceptacion" name="fechaAceptacion" class="form-control" @bind-value="@datos.FechaAceptacion"
+                                    placeholder="Digite la fecha" required /> 
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaBautismo">Fecha bautismo</label>
+                                    <input type="date" id="fechaBautismo" name="fechaBautismo" class="form-control" @bind-value="@datos.FechaBautismo"
+                                    placeholder="Digite la fecha" required /> 
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Denominacion a la que pertenece</label>
+                                    <select @bind="datos.Denominacion" class="form-control">
+                                        <option>-----Seleccione su denominacion-----</option>
+                                        <option value="Bautista">Bautisita</option>
+                                        <option value="Pentecostal">Pentecostal</option>
+                                        <option value="Metodista">Metodista</option>
+                                        <option value="Catolica">Católica</option>
+                                        <option value="Prebisteriana">Prebisteriana</option>
+                                        <option value="Adventista">Adventista</option>
+                                        <option value="Templo Biblico">Templo Biblico</option>
+                                        <option value="Menonita">Menonita</option>
+                                    </select>
+                                    
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="defaultCheck1" @onclick="MostrarInputDenominacion" >
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Otro?
+                                    </label>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="MostrarDenominacion">
+                                    <label>Cual es la denominacion?</label>
+                                    <input class="form-control" @bind-value="datos.Denominacion">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nombreIglesia">Nombre de la	Iglesia	a la que asiste	actualmente</label>
+                                    <textarea type="text" id="nombreIglesia" name="nombreIglesia" class="form-control" @bind="@datos.NombreIglesia"
+                                     required>
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="asiste">Donde se congregaba antes?</label>
+                                    <textarea type="text" id="asiste" name="asiste" class="form-control" @bind="@datos.TiempoAsistencia"
+                                     required>
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="Pastor">Nombre del pastor de su iglesia</label>
+                                    <textarea type="text" id="Pastor" name="Pastor" class="form-control" @bind="@datos.NombrePastor"
+                                     required>
+                                    </textarea>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
                         </form>
                     </div>
@@ -273,6 +408,16 @@
         await iJSRuntime.InvokeVoidAsync("MostrarDatosPersonales");
     }
 
+    private async Task MostrarDatosLaborales()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosLaborales");
+    }
+
+    private async Task MostrarDatosEclesiasticos()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosEclesiasticos");
+    }
+
     private async Task MostrarInputCiudad()
     {
         await iJSRuntime.InvokeVoidAsync("MostrarInputCiudad");
@@ -288,9 +433,19 @@
         await iJSRuntime.InvokeVoidAsync("MostrarDocumentoID");
     }
 
-    private async Task MostrarInputConyugue()
+    private async Task MostrarInputConyugue() /*MostrarInputDenominacion*/
     {
         await iJSRuntime.InvokeVoidAsync("MostrarInputConyugue");
+    }
+
+    private async Task MostrarInputDenominacion()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputDenominacion");
+    }
+
+    private async Task MostrarInputHijos()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputHijos");
     }
     private async Task Mostrar2()
     {
