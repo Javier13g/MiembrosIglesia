@@ -41,6 +41,12 @@
                         <i class="material-icons">add</i>
                         <span class="mdc-button__label">Datos Eclesiasticos</span>
                     </button>
+                    <p></p>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosAcademicos">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">engineering</i>
+                        <span class="mdc-button__label">Datos Academicos</span>
+                    </button>
                 </nav>
             </div>
             <div class="modal-body">
@@ -294,7 +300,6 @@
                                         <option value="Templo Biblico">Templo Biblico</option>
                                         <option value="Menonita">Menonita</option>
                                     </select>
-                                    
                                 </div>
 
                                 <div class="form-check">
@@ -326,6 +331,113 @@
                                 <div class="form-group">
                                     <label for="Pastor">Nombre del pastor de su iglesia</label>
                                     <textarea type="text" id="Pastor" name="Pastor" class="form-control" @bind="@datos.NombrePastor"
+                                     required>
+                                    </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>¿Ha sido disciplinado alguna vez?</label>
+                                    <select @bind="datos.Disciplinado" class="form-control" @onclick="MostrarInputDisciplina">
+                                        <option>-----Seleccione una opcion-----</option>
+                                        <option value="No">No</option>
+                                        <option value="Si">Si</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="MostrarDisciplina">
+                                    <label for="cantidad">¿Cuantas veces?</label>
+                                    <textarea @onkeypress="MostrarInputCausas" type="text" id="cantidad" name="cantidad" class="form-control" @bind="@datos.NumeroVeces" 
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="MostrarCausas">
+                                    <label for="causa">Causas</label>
+                                    <textarea type="text" id="causa" name="causa" class="form-control" @bind="@datos.CausaDisciplina"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>En la actualidad ocupa usted alguna de estas	funciones:</label>
+                                    <select @bind="datos.FuncionesIglesia" class="form-control">
+                                        <option>-----Seleccione la ocupacion-----</option>
+                                        <option value="Pastor">Pastor</option>
+                                        <option value="Anciano">Anciano</option>
+                                        <option value="Diacono">Diacono</option>
+                                        <option value="Misionero">Misionero</option>
+                                        <option value="Lider Escuela Dominical">Lider Escuela Dominical</option>
+                                        <option value="Lider Ministerio de Jovenes">Lider Ministerio de Jovenes</option>
+                                        <option value="Lider Ministerio de Caballeros">Lider Ministerio de Caballeros</option>
+                                        <option value="Lider Ministerio de Damas">Lider Ministerio de Damas</option>
+                                        <option value="Lider Ministerio de Ninos">Lider Ministerio de Ninos</option>
+                                        <option value="Lider Ministerio de Matrimonios">Lider Ministerio de Matrimonios</option>
+                                        <option value="Lider de grupo pequeno">Lider de grupo pequeno</option>
+                                        <option value="Ninguno">Ninguno</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ministerios">¿Cuáles son los ministerios en los que ha servido?</label>
+                                    <textarea type="text" id="ministerios" name="ministerios" class="form-control" @bind="@datos.MinisteriosServidos"
+                                     required>
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ministerios">¿En cuál de estos ministerios considera que tuvo mayor	fruto? ¿Por	qué? </label>
+                                    <textarea type="text" id="ministerios" name="ministerios" class="form-control" @bind="@datos.MinisterioExito"
+                                     required>
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ministerios">Considerando sus dones y talentos, ¿a qué ministerio cree usted que Dios lo está llamando?	</label>
+                                    <textarea type="text" id="ministerios" name="ministerios" class="form-control" @bind="@datos.LlamadoDios"
+                                     required>
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="ministerios">¿Qué metas tiene para su vida?</label>
+                                    <textarea type="text" id="ministerios" name="ministerios" class="form-control" @bind="@datos.MetasVida"
+                                     required>
+                                    </textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>¿Cuenta con el respaldo de sus autoridades eclesiásticas para realizar estos estudios?</label>
+                                    <select @bind="datos.RespaldoAuto" class="form-control">
+                                        <option>-----Seleccione una opcion-----</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="DatosAcademicos">
+                                <h4>Datos Academicos</h4>
+                                <div class="form-group">
+                                    <label>Nivel </label>
+                                    <select @bind="datos.NivelEstudio" class="form-control">
+                                        <option>-----Seleccione una opcion-----</option>
+                                        <option value="Primaria">Primaria</option>
+                                        <option value="Secundaria">Secundaria</option>
+                                        <option value="Tecnico">Tecnico</option>
+                                        <option value="Grado">Grado</option>
+                                        <option value="Postgrado-Maestria">Postgrado-Maestria"</option>
+                                        <option value="Doctorado">Doctorado</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>¿Alguna vez ha sido expulsado o suspendido de alguna	institución?</label>
+                                    <select @bind="datos.Expulsion" class="form-control">
+                                        <option>-----Seleccione una opcion-----</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="razon">¿Razon?</label>
+                                    <textarea type="text" id="razon" name="razon" class="form-control" @bind="@datos.RazonExpulsion"
                                      required>
                                     </textarea>
                                 </div>
@@ -416,6 +528,11 @@
     private async Task MostrarDatosEclesiasticos()
     {
         await iJSRuntime.InvokeVoidAsync("MostrarDatosEclesiasticos");
+    } /*MostrarDatosAcademicos*/
+
+    private async Task MostrarDatosAcademicos()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosAcademicos");
     }
 
     private async Task MostrarInputCiudad()
@@ -447,7 +564,17 @@
     {
         await iJSRuntime.InvokeVoidAsync("MostrarInputHijos");
     }
-    private async Task Mostrar2()
+
+    private async Task MostrarInputDisciplina()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputDisciplina");
+    }
+
+    private async Task MostrarInputCausas()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputCausas");
+    }
+    private async Task Mostrar2() /*MostrarInputDisciplina*/
     {
         await iJSRuntime.InvokeVoidAsync("Mostrar2");
 
