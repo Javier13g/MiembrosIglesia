@@ -7,6 +7,7 @@ function MostrarDatosPersonales() {
     document.getElementById('DatosFamiliares').style.display = 'none';
     document.getElementById('DatosLaborales').style.display = 'none';
     document.getElementById('DatosEclesiasticos').style.display = 'none';
+    document.getElementById('DatosAcademicos').style.display = 'none';
 }
 
 function MostrarDatosFamiliares() {
@@ -14,6 +15,7 @@ function MostrarDatosFamiliares() {
     document.getElementById('DatosPersonales').style.display = 'none';
     document.getElementById('DatosLaborales').style.display = 'none';
     document.getElementById('DatosEclesiasticos').style.display = 'none';
+    document.getElementById('DatosAcademicos').style.display = 'none';
 }
 
 function MostrarDatosLaborales() {
@@ -21,6 +23,7 @@ function MostrarDatosLaborales() {
     document.getElementById('DatosEclesiasticos').style.display = 'none';
     document.getElementById('DatosPersonales').style.display = 'none';
     document.getElementById('DatosLaborales').style.display = 'block';
+    document.getElementById('DatosAcademicos').style.display = 'none';
 }
 
 function MostrarDatosEclesiasticos() {
@@ -28,6 +31,15 @@ function MostrarDatosEclesiasticos() {
     document.getElementById('DatosEclesiasticos').style.display = 'block';
     document.getElementById('DatosPersonales').style.display = 'none';
     document.getElementById('DatosLaborales').style.display = 'none';
+    document.getElementById('DatosAcademicos').style.display = 'none';
+}
+
+function MostrarDatosAcademicos() {
+    document.getElementById('DatosFamiliares').style.display = 'none';
+    document.getElementById('DatosEclesiasticos').style.display = 'none';
+    document.getElementById('DatosPersonales').style.display = 'none';
+    document.getElementById('DatosLaborales').style.display = 'none';
+    document.getElementById('DatosAcademicos').style.display = 'block';
 }
 
 function Mostrar2() {
@@ -62,3 +74,15 @@ function MostrarInputDenominacion()
 {
     document.getElementById('MostrarDenominacion').style.display = 'block';
 }
+
+function MostrarInputDisciplina()
+{
+    document.getElementById('MostrarDisciplina').style.display = 'block';
+    
+}
+
+function MostrarInputCausas()
+{
+    document.getElementById('MostrarCausas').style.display = 'block';
+}
+

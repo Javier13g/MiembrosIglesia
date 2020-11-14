@@ -144,59 +144,6 @@
         }
       },
       {
-        "HashCode": -1540358657,
-        "Kind": "Components.Component",
-        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
-        "AssemblyName": "MiembrosIglesia",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "DatosMiembros"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Uid",
-            "TypeName": "System.Guid",
-            "Metadata": {
-              "Common.PropertyName": "Uid"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
-        }
-      },
-      {
-        "HashCode": 1398295916,
-        "Kind": "Components.Component",
-        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
-        "AssemblyName": "MiembrosIglesia",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
-          }
-        ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "Uid",
-            "TypeName": "System.Guid",
-            "Metadata": {
-              "Common.PropertyName": "Uid"
-            }
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 130494945,
         "Kind": "Components.Component",
         "Name": "MiembrosIglesia.Pages.PaginasMiembros.IndexIglesia",
@@ -279,6 +226,59 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.AggMiembros",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1540358657,
+        "Kind": "Components.Component",
+        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+        "AssemblyName": "MiembrosIglesia",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "DatosMiembros"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Uid",
+            "TypeName": "System.Guid",
+            "Metadata": {
+              "Common.PropertyName": "Uid"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
+        }
+      },
+      {
+        "HashCode": 1398295916,
+        "Kind": "Components.Component",
+        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+        "AssemblyName": "MiembrosIglesia",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Uid",
+            "TypeName": "System.Guid",
+            "Metadata": {
+              "Common.PropertyName": "Uid"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
