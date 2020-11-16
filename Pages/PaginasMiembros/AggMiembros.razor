@@ -185,7 +185,7 @@
                                 <h4>Datos Familiares</h4>
                                 <div class="form-group">
                                     <label>Estado Civil</label>
-                                    <select @bind="datos.TipoDocumento" class="form-control" @onclick="MostrarInputConyugue">
+                                    <select @bind="datos.EstadoCivil" class="form-control" @onclick="MostrarInputConyugue">
                                         <option>-----Seleccione estado civil-----</option>
                                         <option value="Soltero">Soltero</option>
                                         <option value="Casado">Casado</option>
@@ -216,15 +216,6 @@
                                     placeholder="Digite cantidad de hijos, en caso contrario, diga que no" required />
                                     <div class="invalid-feedback">
                                         este campo es requerido!!!!.
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="url">Referencia</label>
-                                    <input type="text" id="url" class="form-control"
-                                    placeholder="Digite la referencia" required />
-                                    <div class="invalid-feedback">
-                                        la referencia es requerida!!!!.
                                     </div>
                                 </div>
                             </div>
@@ -323,7 +314,7 @@
 
                                 <div class="form-group">
                                     <label for="asiste">Donde se congregaba antes?</label>
-                                    <textarea type="text" id="asiste" name="asiste" class="form-control" @bind="@datos.TiempoAsistencia"
+                                    <textarea type="text" id="asiste" name="asiste" class="form-control" @bind="@datos.IglesiaAnterior"
                                      required>
                                     </textarea>
                                 </div>

@@ -177,6 +177,59 @@
         }
       },
       {
+        "HashCode": -1540358657,
+        "Kind": "Components.Component",
+        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+        "AssemblyName": "MiembrosIglesia",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "DatosMiembros"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Uid",
+            "TypeName": "System.Guid",
+            "Metadata": {
+              "Common.PropertyName": "Uid"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
+        }
+      },
+      {
+        "HashCode": 1398295916,
+        "Kind": "Components.Component",
+        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+        "AssemblyName": "MiembrosIglesia",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Uid",
+            "TypeName": "System.Guid",
+            "Metadata": {
+              "Common.PropertyName": "Uid"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 124176191,
         "Kind": "Components.Component",
         "Name": "MiembrosIglesia.Pages.PaginasMiembros.AggMiembros",
@@ -230,55 +283,71 @@
         }
       },
       {
-        "HashCode": -1540358657,
+        "HashCode": -423018672,
         "Kind": "Components.Component",
-        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DetallesModal",
         "AssemblyName": "MiembrosIglesia",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "DatosMiembros"
+            "TagName": "DetallesModal"
           }
         ],
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
-            "Name": "Uid",
-            "TypeName": "System.Guid",
+            "Name": "Id",
+            "TypeName": "System.String",
             "Metadata": {
-              "Common.PropertyName": "Uid"
+              "Common.PropertyName": "Id"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "ts",
+            "TypeName": "MiembrosIglesia.Data.DatosMiembrosIglesia",
+            "Metadata": {
+              "Common.PropertyName": "ts"
             }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
+          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DetallesModal"
         }
       },
       {
-        "HashCode": 1398295916,
+        "HashCode": -382072212,
         "Kind": "Components.Component",
-        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+        "Name": "MiembrosIglesia.Pages.PaginasMiembros.DetallesModal",
         "AssemblyName": "MiembrosIglesia",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros"
+            "TagName": "MiembrosIglesia.Pages.PaginasMiembros.DetallesModal"
           }
         ],
         "BoundAttributes": [
           {
             "Kind": "Components.Component",
-            "Name": "Uid",
-            "TypeName": "System.Guid",
+            "Name": "Id",
+            "TypeName": "System.String",
             "Metadata": {
-              "Common.PropertyName": "Uid"
+              "Common.PropertyName": "Id"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "ts",
+            "TypeName": "MiembrosIglesia.Data.DatosMiembrosIglesia",
+            "Metadata": {
+              "Common.PropertyName": "ts"
             }
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DatosMiembros",
+          "Common.TypeName": "MiembrosIglesia.Pages.PaginasMiembros.DetallesModal",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -15006,6 +15075,11 @@
       "FilePath": "/home/javi/Documentos/GitHub/MiembrosIglesia/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/javi/Documentos/GitHub/MiembrosIglesia/Pages/PaginasMiembros/DetallesModal.razor",
+      "TargetPath": "Pages\\PaginasMiembros\\DetallesModal.razor",
+      "FileKind": "component"
     },
     {
       "FilePath": "/home/javi/Documentos/GitHub/MiembrosIglesia/Areas/Identity/Pages/Account/_ViewImports.cshtml",

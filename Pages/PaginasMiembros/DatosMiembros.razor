@@ -4,8 +4,79 @@
 @inject SignInManager<Usuarios> SignInManager
 @inject UserManager<Usuarios> UserManager
 
+<div>
+    <table class="table">
+        <thead>
+            <th>Id miembro</th>
+            <th>Detalles</th>
+        </thead>
+        <tbody>
+            @if(miembrosIglesias.Count > 0){
+                @foreach (DatosMiembrosIglesia T in miembrosIglesias)
+                {
+                <tr>
+                    <td>@T.Id</td>
+                    <td><button data-toggle="modal" data-target="#MiembroModalDetalle" 
+                    @onclick="(() => SetMiembrosModal(T))"
+                        
+                         class="btn btn-link">Ver Detalles</button></td>
+                </tr>   
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<DetallesModal Id="@modalId" ts="@ModalT" />
+
+
+
+
+
 @code
 {
     [Parameter]
     public Guid Uid { get; set; }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    private string bColor = "#ffffff";
+
+    private Usuarios user = new Usuarios();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authenticationStateTask;
+        user = await UserManager.GetUserAsync(authState.User);
+        Uid = user.Id_Usuario;
+        bColor = user.Color_Usuario;
+    }
+
+    List<DatosMiembrosIglesia> miembrosIglesias = new List<DatosMiembrosIglesia>();
+    DatosMiembrosIglesia ModalT = new DatosMiembrosIglesia();
+    private string modalId = "MiembroModalDetalle";
+    private void SetMiembrosModal(DatosMiembrosIglesia t)
+    {
+        ModalT = t;
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        await Load();
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //if(firstRender)
+        StateHasChanged();
+        await Load();
+    }
+
+    private async Task Load()
+    {
+        if (Uid != null)
+            miembrosIglesias = await IST.GetAllMiembros(Uid);
+    }
 }
