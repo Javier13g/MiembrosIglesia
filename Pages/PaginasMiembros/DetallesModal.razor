@@ -1,0 +1,337 @@
+@using MiembrosIglesia.Data
+@using Microsoft.JSInterop
+@inject IJSRuntime iJSRuntime
+
+<div class="modal fade bd-example-modal-lg" id="@(Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <!--h5 class="modal-title" id="exampleModalLabel">@Title</h5-->
+        <div class="d-flex justify-content-between">
+        <button @onclick="viewDetails" class="btn btn-link">Detalles Personales</button>
+        <button @onclick="VerDatosFamiliares" class="btn btn-link">Detalles Familiares</button>
+        <button @onclick="VerDatosLaborales" class="btn btn-link">Detalles Laborales</button>
+        <button @onclick="VerDatosEclesiasticos" class="btn btn-link">Detalles Eclesiasticos</button>
+        <button @onclick="VerDatosAcademicos" class="btn btn-link">Detalles Academicos</button>
+
+      </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          @if(personal)
+          {
+            <div id="DetallesPersonales">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Sexo</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Fecha Nacimiento</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.SexoPersona</td>
+                   <td>@ts.NombrePersona</td>
+                   <td>@ts.ApellidoPersona</td>
+                   <td>@ts.FechaNacimientoPersona.Day / @ts.FechaNacimientoPersona.Month / @ts.FechaNacimientoPersona.Year</td>
+                 </tr>
+               </tbody>
+             </table>
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Pais Nacimiento</th>
+                    <th scope="col">Ciudad Nacimiento</th>
+                    <th scope="col">Pais Actual</th>
+                    <th scope="col">Ciudad Actual</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.PaisOrigenPersona</td>
+                   <td>@ts.CiudadOrigenPersona</td>
+                   <td>@ts.PaisActualPersona</td>
+                   <td>@ts.CiudadActualPersona</td>
+                 </tr>
+               </tbody>
+             </table>
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Correo Electronico</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.DireccionPersona</td>
+                   <td>@ts.TelefonoPersona</td>
+                   <td>@ts.CelularPersona</td>
+                   <td>@ts.EmailPersona</td>
+                 </tr>
+               </tbody>
+             </table>
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">No. Documento</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.TipoDocumento</td>
+                   <td>@ts.DocumentoIdentidad</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+          }
+
+          @if(Familiares)
+          {
+            <div id="DetallesFamiliares">
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Estado Civil</th>
+                    <th scope="col">Nombre Conyuge</th>
+                    <th scope="col">Hijos</th>
+                    <th scope="col">No. Hijos</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.EstadoCivil</td>
+                   <td>@ts.NombreConyuge</td>
+                   <td>@ts.Hijos</td>
+                   <td>@ts.NumeroHijos</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+          }
+          
+          @if(Laborales)
+          {
+            <div id="DetallesLaborales">
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Profesion</th>
+                    <th scope="col">Ocupacion</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.ProfesionPersona</td>
+                   <td>@ts.OcupacionPersona</td>
+                   <td>@ts.NombreEmpresa</td>
+                   <td>@ts.TelefonoEmpresa</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+          }
+          @if(Eclesiasticos)
+          {
+            <div id="DetallesEclesiasticos">
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Fecha Conversion</th>
+                    <th scope="col">Fecha Bautismo</th>
+                    <th scope="col">Fecha Aceptacion</th>
+                    <th scope="col">Denominacion</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.FechaConversion</td>
+                   <td>@ts.OcupacionPersona</td>
+                   <td>@ts.NombreEmpresa</td>
+                   <td>@ts.TelefonoEmpresa</td>
+                 </tr>
+               </tbody>
+             </table>
+
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Nombre Iglesia</th>
+                    <th scope="col">Tiempo Asistencia</th>
+                    <th scope="col">Iglesia Anterior</th>
+                    <th scope="col">Nombre Pastor</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.NombreIglesia</td>
+                   <td>@ts.TiempoAsistencia</td>
+                   <td>@ts.IglesiaAnterior</td>
+                   <td>@ts.NombrePastor</td>
+                 </tr>
+               </tbody>
+             </table>
+
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Disciplinado?</th>
+                    <th scope="col"># de veces</th>
+                    <th scope="col">Causa</th>
+                    <th scope="col">Funciones</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.Disciplinado</td>
+                   <td>@ts.NumeroVeces</td>
+                   <td>@ts.CausaDisciplina</td>
+                   <td>@ts.FuncionesIglesia</td>
+                 </tr>
+               </tbody>
+             </table>
+
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Ministerios Servidos</th>
+                    <th scope="col">Ministerio donde tuvo mayor exito</th>
+                    <th scope="col">Ministerio en que Dios lo llama</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.MinisteriosServidos</td>
+                   <td>@ts.MinisterioExito</td>
+                   <td>@ts.LlamadoDios</td>
+                 </tr>
+               </tbody>
+             </table>
+
+             <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Metas vida</th>
+                    <th scope="col">Respaldo Autoridad Eclesiastica</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.MetasVida</td>
+                   <td>@ts.RespaldoAuto</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+          }
+
+          @if(Academico)
+          {
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Nivel Estudio</th>
+                    <th scope="col">Fue expulsado?</th>
+                    <th scope="col">Razon</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>@ts.NivelEstudio</td>
+                   <td>@ts.Expulsion</td>
+                   <td>@ts.RazonExpulsion</td>
+                 </tr>
+               </tbody>
+             </table>
+          }
+</div>
+      </div>
+<!----------------------------------------------------->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@code
+{
+  [Parameter]
+      public string Id { get; set; }
+      [Parameter]
+      public DatosMiembrosIglesia ts { get; set; }
+      private bool personal = true;
+      private bool Familiares = false;
+
+      private bool Laborales = false;
+
+      private bool Eclesiasticos = false;
+
+      private bool Academico = false;
+
+      private void viewDetails()
+      {
+          personal = true;
+          Familiares = false;
+          Laborales = false;
+          Eclesiasticos = false;
+          Academico = false;
+      }
+
+      private void VerDatosFamiliares()
+      {
+          personal = false;
+          Familiares = true;
+          Laborales = false;
+          Eclesiasticos = false;
+          Academico = false;
+      }
+
+      private void VerDatosLaborales()
+      {
+          personal = false;
+          Familiares = false;
+          Laborales = true;
+          Eclesiasticos = false;
+          Academico = false;
+      }
+
+      private void VerDatosEclesiasticos()
+      {
+          personal = false;
+          Familiares = false;
+          Laborales = false;
+          Eclesiasticos = true;
+          Academico = false;
+      }
+
+    private void VerDatosAcademicos()
+      {
+          personal = false;
+          Familiares = false;
+          Laborales = false;
+          Eclesiasticos = false;
+          Academico = true;
+    }
+
+      private async Task MostrarDetallesPersonales()
+      {
+          await iJSRuntime.InvokeVoidAsync("MostrarDetallesPersonales");
+      }
+
+      private async Task MostrarDetallesFamiliares()
+      {
+          await iJSRuntime.InvokeVoidAsync("MostrarDetallesFamiliares");
+      }
+}

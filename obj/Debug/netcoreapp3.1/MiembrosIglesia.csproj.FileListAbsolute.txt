@@ -218,3 +218,5 @@
 /home/javi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/Razor/Pages/PaginasMiembros/DatosMiembros.razor.g.cs
 /home/javi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/Razor/Pages/PaginasMiembros/IndexIglesia.razor.g.cs
 /home/javi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/app.db
+/home/javi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/RazorDeclaration/Pages/PaginasMiembros/DetallesModal.razor.g.cs
+/home/javi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/Razor/Pages/PaginasMiembros/DetallesModal.razor.g.cs

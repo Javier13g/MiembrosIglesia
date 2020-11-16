@@ -86,3 +86,15 @@ function MostrarInputCausas()
     document.getElementById('MostrarCausas').style.display = 'block';
 }
 
+function MostrarDetallesPersonales()
+{
+    document.getElementById('DetallesPersonales').style = 'block'
+    document.getElementById('DetallesFamiliares').style = 'none'
+}
+
+function MostrarDetallesFamiliares()
+{
+    document.getElementById('DetallesPersonales').style = 'none'
+    document.getElementById('DetallesFamiliares').style = 'block'
+}
+
