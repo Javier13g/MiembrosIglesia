@@ -5,8 +5,7 @@
 <div class="modal fade bd-example-modal-lg" id="@(Id)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content modal-lg">
-      <div class="modal-header">
-        <!--h5 class="modal-title" id="exampleModalLabel">@Title</h5-->
+      <div class="modal-header" >
         <div class="d-flex justify-content-between">
         <button @onclick="viewDetails" class="btn btn-link">Detalles Personales</button>
         <button @onclick="VerDatosFamiliares" class="btn btn-link">Detalles Familiares</button>
@@ -156,10 +155,10 @@
                </thead>
                <tbody>
                  <tr>
-                   <td>@ts.FechaConversion</td>
-                   <td>@ts.OcupacionPersona</td>
-                   <td>@ts.NombreEmpresa</td>
-                   <td>@ts.TelefonoEmpresa</td>
+                   <td>@ts.FechaConversion.Day / @ts.FechaConversion.Month / @ts.FechaConversion.Year</td>
+                   <td>@ts.FechaBautismo.Day / @ts.FechaBautismo.Month / @ts.FechaBautismo.Year</td>
+                   <td>@ts.FechaAceptacion.Day / @ts.FechaAceptacion.Month / @ts.FechaAceptacion.Year</td>
+                   <td>@ts.Denominacion</td>
                  </tr>
                </tbody>
              </table>

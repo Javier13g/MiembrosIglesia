@@ -14,6 +14,8 @@ namespace MiembrosIglesia.Data
         Task<List<DatosMiembrosIglesia>> GetAllMiembros(Guid Uid);
         Task<DatosMiembrosIglesia> GetMiembros(Guid Tid);
         Task<bool> SetMiembros(DatosMiembrosIglesia T);
+        
+        Task<bool> DeleteMiembros(DatosMiembrosIglesia T);
 
 
     }
@@ -50,6 +52,23 @@ namespace MiembrosIglesia.Data
             try
             {
                 db.DatosMiembros.Add(T);
+                db.SaveChanges();
+                status = true;
+            }
+            catch (Exception e)
+            {
+                status = false;
+                Console.WriteLine(e.Message);
+            }
+            return Task.FromResult(status);
+        }
+        
+        public Task<bool> DeleteMiembros(DatosMiembrosIglesia T)
+        {
+            bool status = false;
+            try
+            {
+                db.DatosMiembros.Remove(T);
                 db.SaveChanges();
                 status = true;
             }

@@ -8,7 +8,8 @@
     <table class="table">
         <thead>
             <th>Id miembro</th>
-            <th>Detalles</th>
+        <th>Datos</th>
+        <th>Opciones</th>
         </thead>
         <tbody>
             @if(miembrosIglesias.Count > 0){
@@ -17,9 +18,10 @@
                 <tr>
                     <td>@T.Id</td>
                     <td><button data-toggle="modal" data-target="#MiembroModalDetalle" 
-                    @onclick="(() => SetMiembrosModal(T))"
+                                @onclick="(() => SetMiembrosModal(T))"
                         
-                         class="btn btn-link">Ver Detalles</button></td>
+                                class="btn btn-link">Informacion Miembros</button></td>
+                    <td><button class="btn btn-danger" @onclick="(() => BorrarMiembros2(T))">Borrar Miembro</button></td>
                 </tr>   
                 }
             }
@@ -78,5 +80,26 @@
     {
         if (Uid != null)
             miembrosIglesias = await IST.GetAllMiembros(Uid);
+    }
+    
+    
+    private async Task BorrarMiembros2(DatosMiembrosIglesia ReporteD )
+    {
+        await IST.DeleteMiembros(ReporteD);
+    }
+
+    private DatosMiembrosIglesia datos = new DatosMiembrosIglesia();
+    private async Task BorrarMiembros(DatosMiembrosIglesia t)
+    {
+        Console.WriteLine("Se Inicio El borrado");
+        var status = await IST.DeleteMiembros(datos);
+        
+        if (status)
+        {
+            StateHasChanged();
+        }
+        Console.WriteLine(status)
+            ; Console.WriteLine("Finalizo El Guardado");
+
     }
 }
