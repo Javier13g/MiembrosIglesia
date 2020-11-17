@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/javi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj": {}
+    "/home/itachi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj": {}
   },
   "projects": {
-    "/home/javi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj": {
+    "/home/itachi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/javi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj",
+        "projectUniqueName": "/home/itachi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj",
         "projectName": "MiembrosIglesia",
-        "projectPath": "/home/javi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj",
-        "packagesPath": "/home/javi/.nuget/packages/",
-        "outputPath": "/home/javi/Documentos/GitHub/MiembrosIglesia/obj/",
+        "projectPath": "/home/itachi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj",
+        "packagesPath": "/home/itachi/.nuget/packages/",
+        "outputPath": "/home/itachi/Documentos/GitHub/MiembrosIglesia/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/javi/.nuget/NuGet/NuGet.Config"
+          "/home/itachi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -75,6 +75,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.8, 3.1.8]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
