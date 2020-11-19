@@ -126,6 +126,7 @@
         <e p="js" t="Include">
           <e p="Javascript.js" t="Include" />
         </e>
+        <e p="sesion.gif" t="Include" />
       </e>
     </e>
   </component>

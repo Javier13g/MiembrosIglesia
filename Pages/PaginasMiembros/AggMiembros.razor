@@ -259,7 +259,7 @@
                                 </div>
                             </div>
 
-                            <div id="DatosEclesiasticos">
+                            <div id="DatosEclesiasticos" style="display: none;">
                                 <div class="form-group">
                                     <label for="fechaConversion">Fecha de Conversion</label>
                                     <input type="date" id="fechaConversion" name="fechaConversion" class="form-control" @bind-value="@datos.FechaConversion"
@@ -402,7 +402,7 @@
                                 </div>
                             </div>
 
-                            <div id="DatosAcademicos">
+                            <div id="DatosAcademicos" style="display: none;">
                                 <h4>Datos Academicos</h4>
                                 <div class="form-group">
                                     <label>Nivel </label>
@@ -433,7 +433,8 @@
                                     </textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
+                        <button @onclick="@AlertGuardarMiembros" type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
+                        <button @onclick="@AlertGuardarMiembros">OLA</button>
                         </form>
                     </div>
                 </div>
@@ -499,8 +500,8 @@
     new NombrePaises() {Paises = "Republica Dominicana"},
     new NombrePaises() {Paises = "Colombia"},
     };
-
-    /*LLAMADA FUNCIONES JAVASCRIPT*/
+ 
+   /*LLAMADA FUNCIONES JAVASCRIPT*/
     private async Task MostrarDatosFamiliares()
     {
         await iJSRuntime.InvokeVoidAsync("MostrarDatosFamiliares");
@@ -569,6 +570,11 @@
     {
         await iJSRuntime.InvokeVoidAsync("Mostrar2");
 
+    }
+    
+    private async Task AlertGuardarMiembros()
+    {
+        await iJSRuntime.InvokeVoidAsync("AlertGuardarMiembros");
     }
 
 

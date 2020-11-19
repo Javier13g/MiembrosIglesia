@@ -1,5 +1,6 @@
 @using MiembrosIglesia.Data 
 @inject IServicioIglesia IST
+@inject IJSRuntime iJSRuntime
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<Usuarios> SignInManager
 @inject UserManager<Usuarios> UserManager
@@ -21,7 +22,13 @@
                                 @onclick="(() => SetMiembrosModal(T))"
                         
                                 class="btn btn-link">Informacion Miembros</button></td>
-                    <td><button class="btn btn-danger" @onclick="(() => BorrarMiembros2(T))">Borrar Miembro</button></td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="(() => BorrarMiembros2(T))">Borrar Miembro</button>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#EditarMiembros" 
+                                @onclick="(() => SetM(T))">
+                            Editar Miembro
+                        </button>
+                    </td>
                 </tr>   
                 }
             }
@@ -32,7 +39,474 @@
 
 <DetallesModal Id="@modalId" ts="@ModalT" />
 
+<div class="modal fade" id="EditarMiembros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 style="text-align: justify;" class="modal-title" id="exampleModalLabel">Agregar Miembros</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <nav>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosPersonales">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">people</i>
+                        <span class="mdc-button__label">Datos Personales</span>
+                    </button>
 
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosFamiliares">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">family_restroom</i>
+                        <span class="mdc-button__label">Datos Familiares</span>
+                    </button>
+                    <p></p>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosLaborales">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">engineering</i>
+                        <span class="mdc-button__label">Datos Laborales</span>
+                    </button>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosEclesiasticos">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">add</i>
+                        <span class="mdc-button__label">Datos Eclesiasticos</span>
+                    </button>
+                    <p></p>
+                    <button class="mdc-button mdc-button--raised" @onclick="MostrarDatosAcademicos">
+                        <div class="mdc-button__ripple"></div>
+                        <i class="material-icons">engineering</i>
+                        <span class="mdc-button__label">Datos Academicos</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="modal-body">
+                <div style="margin-left:auto; margin-right:auto;">
+                <div class="">
+                <EditForm Model="@ActualizarMiembros">
+                <form class="was-validated">
+                <div id="DatosPersonales">
+                    <h4>Datos Personales</h4>
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <select @bind="@ActualizarMiembros.SexoPersona" class="form-control">
+                            <option>-----Seleccione el sexo-----</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos</label>
+                        <input type="text" id="apellidos" name="apellidos" class="form-control"
+                               @bind-value="@ActualizarMiembros.ApellidoPersona"
+                               placeholder="Digite los apellidos" required/>
+                        <div class="invalid-feedback">
+                            Apellido es requerido!!!!.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" 
+                               @bind-value="@ActualizarMiembros.NombrePersona"
+                               placeholder="Digite el nombre" required/>
+                        <div class="invalid-feedback">
+                            Nombre es requerido!!!!.
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" name="fecha" class="form-control" 
+                               @bind-value="@ActualizarMiembros.FechaNacimientoPersona"
+                               placeholder="Digite la fecha" required/>
+                        <div class="invalid-feedback">
+                            a fecha es requerida!!!!.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Pais Origen</label>
+                        <select @bind="@ActualizarMiembros.PaisOrigenPersona" class="form-control" @onclick="MostrarInputCiudad">
+                            <option>--Seleccione pais de origen--</option>
+                            @foreach (var item in ListaPaises)
+                            {
+                                <option value="@item.Paises">@item.Paises</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" style="display: none;" id="ciudadNacimiento">
+                        <label for="ciudadN">Ciudad Nacimiento</label>
+                        <input type="text" id="ciudadN" name="ciudadN" class="form-control" 
+                               @bind-value="@ActualizarMiembros.CiudadOrigenPersona"
+                               placeholder="Digite la ciudad" required/>
+                        <div class="invalid-feedback">
+                            la ciudad es requerida!!!!.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Pais Actual</label>
+                        <select @bind="@ActualizarMiembros.PaisActualPersona" class="form-control" @onclick="MostrarInputCiudadActual">
+                            <option>--Seleccione pais residencia--</option>
+                            @foreach (var item in ListaPaises)
+                            {
+                                <option value="@item.Paises">@item.Paises</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="ciudadActual">
+                        <label for="ciudadA">Ciudad Actual</label>
+                        <input type="text" id="ciudadA" name="ciudadA" class="form-control" 
+                               @bind-value="@ActualizarMiembros.CiudadActualPersona"
+                               placeholder="Digite la ciudad" required/>
+                        <div class="invalid-feedback">
+                            la ciudad es requerida!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Direccion</label>
+                        <textarea type="text" id="direccion" name="direccion" class="form-control" 
+                                   @bind="@ActualizarMiembros.DireccionPersona"
+                                    placeholder="Digite la direccion" required>
+                        </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="text" id="telefono" name="telefono" class="form-control" 
+                               @bind-value="@ActualizarMiembros.TelefonoPersona"
+                               placeholder="Digite el telefono" required/>
+                        <div class="invalid-feedback">
+                            telefono es requerido!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="celular">Celular</label>
+                        <input type="text" id="celular" name="celular" class="form-control" 
+                               @bind-value="@ActualizarMiembros.CelularPersona"
+                               placeholder="Digite el celular" required/>
+                        <div class="invalid-feedback">
+                            celular es requerido!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo Electronico</label>
+                        <input type="text" id="correo" name="correo" class="form-control" 
+                               @bind-value="@ActualizarMiembros.EmailPersona"
+                               placeholder="Digite el correo" required/>
+                        <div class="invalid-feedback">
+                            correo es requerido!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipos de Documento</label>
+                        <select @bind="@ActualizarMiembros.TipoDocumento" class="form-control" @onclick="MostrarDocumentoID">
+                            <option>-----Seleccione un documento-----</option>
+                            <option value="Cedula">Cedula</option>
+                            <option value="Pasaporte">Pasaporte</option>
+                            <option value="DNI">DNI</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="documentoID">
+                        <label for="docID">Documento de identidad</label>
+                        <input type="text" id="docID" name="docID" class="form-control" 
+                               @bind-value="@ActualizarMiembros.DocumentoIdentidad"
+                               placeholder="Digite el documento" required/>
+                        <div class="invalid-feedback">
+                            documento es requerido!!!!.
+                        </div>
+                    </div>
+                </div>
+
+                <!--FORM DATOS familiares-->
+                <div style="display:none" id="DatosFamiliares">
+                    <h4>Datos Familiares</h4>
+                    <div class="form-group">
+                        <label>Estado Civil</label>
+                        <select @bind="@ActualizarMiembros.EstadoCivil" class="form-control" @onclick="MostrarInputConyugue">
+                            <option>-----Seleccione estado civil-----</option>
+                            <option value="Soltero">Soltero</option>
+                            <option value="Casado">Casado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="MostrarConyugue">
+                        <label for="conyugue">Nombre Conyugue</label>
+                        <input type="text" id="conyugue" name="conyugue" class="form-control" 
+                               @bind-value="@ActualizarMiembros.NombreConyuge"
+                               placeholder="Digite el o la conyugue" required/>
+                        <div class="invalid-feedback">
+                            conyugue es requerido!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tiene hijos?</label>
+                        <select @bind="@ActualizarMiembros.Hijos" class="form-control" @onclick="MostrarInputHijos">
+                            <option>-----Seleccione una opcion-----</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="MostrarHijos">
+                        <label for="numHijos"></label>
+                        <input type="text" id="numHijos" name="numHijos" class="form-control" 
+                               @bind-value="@ActualizarMiembros.NumeroHijos"
+                               placeholder="Digite cantidad de hijos, en caso contrario, diga que no" required/>
+                        <div class="invalid-feedback">
+                            este campo es requerido!!!!.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: none;" id="DatosLaborales">
+                    <!--DATOS LABORALES-->
+                    <div class="form-group">
+                        <label for="profesion">Profesion</label>
+                        <input type="text" id="profesion" name="profesion" class="form-control" 
+                               @bind-value="@ActualizarMiembros.ProfesionPersona"
+                               placeholder="Digite la profesion" required/>
+                        <div class="invalid-feedback">
+                            Profesion es requerido!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ocupacion">Ocupacion Actual</label>
+                        <input type="text" id="ocupacion" name="ocupacion" class="form-control" 
+                               @bind-value="@ActualizarMiembros.OcupacionPersona"
+                               placeholder="Digite la ocupacion" required/>
+                        <div class="invalid-feedback">
+                            Ocupacion es requerido!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="empresa">Nombre de la empresa o negocio</label>
+                        <input type="text" id="empresa" name="empresa" class="form-control" 
+                               @bind-value="@ActualizarMiembros.NombreEmpresa"
+                               placeholder="Digite la empresa" required/>
+                        <div class="invalid-feedback">
+                            Empresa es requerida!!!!.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefonoLab">Telefono</label>
+                        <input type="text" id="telefonoLab" name="telefonoLab" class="form-control" 
+                               @bind-value="@ActualizarMiembros.TelefonoEmpresa"
+                               placeholder="Digite el telefono" required/>
+                        <div class="invalid-feedback">
+                            telefono es requerido!!!!.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="DatosEclesiasticos" style="display: none;">
+                    <div class="form-group">
+                        <label for="fechaConversion">Fecha de Conversion</label>
+                        <input type="date" id="fechaConversion" name="fechaConversion" class="form-control" 
+                               @bind-value="@ActualizarMiembros.FechaConversion"
+                               placeholder="Digite la fecha" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaAceptacion">Fecha en que fue aceptado formalmente como miembro de la Iglesia</label>
+                        <input type="date" id="fechaAceptacion" name="fechaAceptacion" class="form-control" 
+                               @bind-value="@ActualizarMiembros.FechaAceptacion"
+                               placeholder="Digite la fecha" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaBautismo">Fecha bautismo</label>
+                        <input type="date" id="fechaBautismo" name="fechaBautismo" class="form-control" 
+                               @bind-value="@ActualizarMiembros.FechaBautismo"
+                               placeholder="Digite la fecha" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Denominacion a la que pertenece</label>
+                        <select @bind="@ActualizarMiembros.Denominacion" class="form-control">
+                            <option>-----Seleccione su denominacion-----</option>
+                            <option value="Bautista">Bautisita</option>
+                            <option value="Pentecostal">Pentecostal</option>
+                            <option value="Metodista">Metodista</option>
+                            <option value="Catolica">Católica</option>
+                            <option value="Prebisteriana">Prebisteriana</option>
+                            <option value="Adventista">Adventista</option>
+                            <option value="Templo Biblico">Templo Biblico</option>
+                            <option value="Menonita">Menonita</option>
+                        </select>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="defaultCheck1" @onclick="MostrarInputDenominacion">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Otro?
+                        </label>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="MostrarDenominacion">
+                        <label>Cual es la denominacion?</label>
+                        <input class="form-control" @bind-value="@ActualizarMiembros.Denominacion">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombreIglesia">Nombre de la Iglesia a la que asiste actualmente</label>
+                        <textarea type="text" id="nombreIglesia" name="nombreIglesia" class="form-control" 
+                                     @bind="@ActualizarMiembros.NombreIglesia"
+                                     required>
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asiste">Donde se congregaba antes?</label>
+                        <textarea type="text" id="asiste" name="asiste" class="form-control" 
+                                    @bind="@ActualizarMiembros.IglesiaAnterior"
+                                     required>
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Pastor">Nombre del pastor de su iglesia</label>
+                        <textarea type="text" id="Pastor" name="Pastor" class="form-control" 
+                                    @bind="@ActualizarMiembros.NombrePastor"
+                                     required>
+                                    </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>¿Ha sido disciplinado alguna vez?</label>
+                        <select @bind="@ActualizarMiembros.Disciplinado" class="form-control" @onclick="MostrarInputDisciplina">
+                            <option>-----Seleccione una opcion-----</option>
+                            <option value="No">No</option>
+                            <option value="Si">Si</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="MostrarDisciplina">
+                        <label for="cantidad">¿Cuantas veces?</label>
+                        <textarea @onkeypress="MostrarInputCausas" type="text" id="cantidad" name="cantidad" class="form-control" 
+                             @bind="@ActualizarMiembros.NumeroVeces" 
+                                    ></textarea>
+                    </div>
+
+                    <div class="form-group" style="display: none;" id="MostrarCausas">
+                        <label for="causa">Causas</label>
+                        <textarea type="text" id="causa" name="causa" class="form-control" 
+                           @bind="@ActualizarMiembros.CausaDisciplina"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>En la actualidad ocupa usted alguna de estas funciones:</label>
+                        <select @bind="@ActualizarMiembros.FuncionesIglesia" class="form-control">
+                            <option>-----Seleccione la ocupacion-----</option>
+                            <option value="Pastor">Pastor</option>
+                            <option value="Anciano">Anciano</option>
+                            <option value="Diacono">Diacono</option>
+                            <option value="Misionero">Misionero</option>
+                            <option value="Lider Escuela Dominical">Lider Escuela Dominical</option>
+                            <option value="Lider Ministerio de Jovenes">Lider Ministerio de Jovenes</option>
+                            <option value="Lider Ministerio de Caballeros">Lider Ministerio de Caballeros</option>
+                            <option value="Lider Ministerio de Damas">Lider Ministerio de Damas</option>
+                            <option value="Lider Ministerio de Ninos">Lider Ministerio de Ninos</option>
+                            <option value="Lider Ministerio de Matrimonios">Lider Ministerio de Matrimonios</option>
+                            <option value="Lider de grupo pequeno">Lider de grupo pequeno</option>
+                            <option value="Ninguno">Ninguno</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ministerios">¿Cuáles son los ministerios en los que ha servido?</label>
+                        <textarea type="text" id="ministerios" name="ministerios" class="form-control" 
+                             @bind="@ActualizarMiembros.MinisteriosServidos"
+                                     required>
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ministerios">¿En cuál de estos ministerios considera que tuvo mayor fruto? ¿Por qué? </label>
+                        <textarea type="text" id="ministerios" name="ministerios" class="form-control" 
+                            @bind="@ActualizarMiembros.MinisterioExito"
+                                     required>
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ministerios">Considerando sus dones y talentos, ¿a qué ministerio cree usted que Dios lo está llamando? </label>
+                        <textarea type="text" id="ministerios" name="ministerios" class="form-control" @bind="@datos.LlamadoDios"
+                                     required>
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ministerios">¿Qué metas tiene para su vida?</label>
+                        <textarea type="text" id="ministerios" name="ministerios" class="form-control" 
+                           @bind="@ActualizarMiembros.MetasVida"
+                                     required>
+                                    </textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Cuenta con el respaldo de sus autoridades eclesiásticas para realizar estos estudios?</label>
+                        <select @bind="@ActualizarMiembros.RespaldoAuto" class="form-control">
+                            <option>-----Seleccione una opcion-----</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="DatosAcademicos" style="display: none;">
+                    <h4>Datos Academicos</h4>
+                    <div class="form-group">
+                        <label>Nivel </label>
+                        <select @bind="@ActualizarMiembros.NivelEstudio" class="form-control">
+                            <option>-----Seleccione una opcion-----</option>
+                            <option value="Primaria">Primaria</option>
+                            <option value="Secundaria">Secundaria</option>
+                            <option value="Tecnico">Tecnico</option>
+                            <option value="Grado">Grado</option>
+                            <option value="Postgrado-Maestria">Postgrado-Maestria"</option>
+                            <option value="Doctorado">Doctorado</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>¿Alguna vez ha sido expulsado o suspendido de alguna institución?</label>
+                        <select @bind="@ActualizarMiembros.Expulsion" class="form-control">
+                            <option>-----Seleccione una opcion-----</option>
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="razon">¿Razon?</label>
+                        <textarea type="text" id="razon" name="razon" class="form-control" @bind="@datos.RazonExpulsion"
+                                     required>
+                                    </textarea>
+                    </div>
+                </div>
+                <button @onclick="HandleSubmit" type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
+
+                </form>
+                </EditForm>
+                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -86,6 +560,7 @@
     private async Task BorrarMiembros2(DatosMiembrosIglesia ReporteD )
     {
         await IST.DeleteMiembros(ReporteD);
+        AlertBorrarMiembros();
     }
 
     private DatosMiembrosIglesia datos = new DatosMiembrosIglesia();
@@ -102,4 +577,102 @@
             ; Console.WriteLine("Finalizo El Guardado");
 
     }
+    DatosMiembrosIglesia ActualizarMiembros = new DatosMiembrosIglesia();
+    
+    private void SetM(DatosMiembrosIglesia rv)
+    {
+        ActualizarMiembros = rv;
+    }
+    
+    private async Task HandleSubmit()
+    {
+        await IST.EditarMiembros(ActualizarMiembros);
+    }
+    
+    private async Task AlertBorrarMiembros()
+    {
+        await iJSRuntime.InvokeVoidAsync("AlertBorrarMiembros");
+    }
+    
+    /*LLAMADA FUNCIONES JAVASCRIPT*/
+    private async Task MostrarDatosFamiliares()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosFamiliares");
+    }
+
+    private async Task MostrarDatosPersonales()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosPersonales");
+    }
+
+    private async Task MostrarDatosLaborales()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosLaborales");
+    }
+
+    private async Task MostrarDatosEclesiasticos()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosEclesiasticos");
+    } /*MostrarDatosAcademicos*/
+
+    private async Task MostrarDatosAcademicos()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDatosAcademicos");
+    }
+
+    private async Task MostrarInputCiudad()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputCiudad");
+    }
+
+    private async Task MostrarInputCiudadActual()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputCiudadActual");
+    }
+
+    private async Task MostrarDocumentoID()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarDocumentoID");
+    }
+
+    private async Task MostrarInputConyugue() /*MostrarInputDenominacion*/
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputConyugue");
+    }
+
+    private async Task MostrarInputDenominacion()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputDenominacion");
+    }
+
+    private async Task MostrarInputHijos()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputHijos");
+    }
+
+    private async Task MostrarInputDisciplina()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputDisciplina");
+    }
+
+    private async Task MostrarInputCausas()
+    {
+        await iJSRuntime.InvokeVoidAsync("MostrarInputCausas");
+    }
+    private async Task Mostrar2() /*MostrarInputDisciplina*/
+    {
+        await iJSRuntime.InvokeVoidAsync("Mostrar2");
+
+    }
+    
+    public class NombrePaises
+    {
+        public string Paises { get; set; }
+    }
+
+    List<NombrePaises> ListaPaises = new List<NombrePaises>()
+    {
+        new NombrePaises() {Paises = "Republica Dominicana"},
+        new NombrePaises() {Paises = "Colombia"},
+    };
 }

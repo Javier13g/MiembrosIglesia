@@ -98,3 +98,16 @@ function MostrarDetallesFamiliares()
     document.getElementById('DetallesFamiliares').style = 'block'
 }
 
+function AlertBorrarMiembros() {
+    
+    alertify.alert('Exito', function () { alertify.success('Registro Eliminado'); });
+
+}
+
+function AlertGuardarMiembros() {
+    alertify.alert('Aviso!!!','Exito!', function () { alertify.success('Registro Guardado'); });
+
+}
+
+
+

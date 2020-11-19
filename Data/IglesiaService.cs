@@ -16,6 +16,8 @@ namespace MiembrosIglesia.Data
         Task<bool> SetMiembros(DatosMiembrosIglesia T);
         
         Task<bool> DeleteMiembros(DatosMiembrosIglesia T);
+        
+        Task<bool> EditarMiembros(DatosMiembrosIglesia T);
 
 
     }
@@ -79,7 +81,29 @@ namespace MiembrosIglesia.Data
             }
             return Task.FromResult(status);
         }
-
+        
+        public Task<bool> EditarMiembros(DatosMiembrosIglesia T)
+        {
+            bool status = false;
+            try
+            {
+                var MiembroExiste = db.DatosMiembros.FirstOrDefault(
+                    xx => xx.Id == T.Id);
+                if ( MiembroExiste != null)
+                {
+                    db.DatosMiembros.Update(T);
+                    db.SaveChanges();
+                    status = true;
+                }
+                
+            }
+            catch (Exception e)
+            {
+                status = false;
+                Console.WriteLine(e.Message);
+            }
+            return Task.FromResult(status);
+        }
 
     }
 }
