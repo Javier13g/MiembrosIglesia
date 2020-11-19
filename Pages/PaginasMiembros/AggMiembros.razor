@@ -201,6 +201,7 @@
                                     </div>
                                 </div>
 
+<<<<<<< HEAD
                                 <div class="form-group">
                                     <label>Tiene hijos?</label>
                                     <select @bind="datos.Hijos" class="form-control" @onclick="MostrarInputHijos">
@@ -246,6 +247,65 @@
                                     placeholder="Digite la empresa" required />
                                     <div class="invalid-feedback">
                                         Empresa es requerida!!!!.
+=======
+                                <div class="form-group">
+                                    <label>Tiene hijos?</label>
+                                    <select @bind="datos.Hijos" class="form-control" @onclick="MostrarInputHijos">
+                                        <option>-----Seleccione una opcion-----</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group" style="display: none;" id="MostrarHijos">
+                                    <label for="numHijos"></label>
+                                    <input type="text" id="numHijos" name="numHijos" class="form-control" @bind-value="@datos.NumeroHijos"
+                                    placeholder="Digite cantidad de hijos, en caso contrario, diga que no" required />
+                                    <div class="invalid-feedback">
+                                        este campo es requerido!!!!.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="display: none;" id="DatosLaborales">
+                                <!--DATOS LABORALES-->
+                                <div class="form-group">
+                                    <label for="profesion">Profesion</label>
+                                    <input type="text" id="profesion" name="profesion" class="form-control" @bind-value="@datos.ProfesionPersona"
+                                    placeholder="Digite la profesion" required />
+                                    <div class="invalid-feedback">
+                                        Profesion es requerido!!!!.
+>>>>>>> master
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+<<<<<<< HEAD
+                                    <label for="telefonoLab">Telefono</label>
+                                    <input type="text" id="telefonoLab" name="telefonoLab" class="form-control" @bind-value="@datos.TelefonoEmpresa"
+                                    placeholder="Digite el telefono" required />
+                                    <div class="invalid-feedback">
+                                        telefono es requerido!!!!.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="DatosEclesiasticos" style="display: none;">
+=======
+                                    <label for="ocupacion">Ocupacion Actual</label>
+                                    <input type="text" id="ocupacion" name="ocupacion" class="form-control" @bind-value="@datos.OcupacionPersona"
+                                    placeholder="Digite la ocupacion" required />
+                                    <div class="invalid-feedback">
+                                        Ocupacion es requerido!!!!.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="empresa">Nombre de la empresa o negocio</label>
+                                    <input type="text" id="empresa" name="empresa" class="form-control" @bind-value="@datos.NombreEmpresa"
+                                    placeholder="Digite la empresa" required />
+                                    <div class="invalid-feedback">
+                                        Empresa es requerida!!!!.
                                     </div>
                                 </div>
 
@@ -259,7 +319,8 @@
                                 </div>
                             </div>
 
-                            <div id="DatosEclesiasticos" style="display: none;">
+                            <div id="DatosEclesiasticos">
+>>>>>>> master
                                 <div class="form-group">
                                     <label for="fechaConversion">Fecha de Conversion</label>
                                     <input type="date" id="fechaConversion" name="fechaConversion" class="form-control" @bind-value="@datos.FechaConversion"
@@ -402,7 +463,11 @@
                                 </div>
                             </div>
 
+<<<<<<< HEAD
                             <div id="DatosAcademicos" style="display: none;">
+=======
+                            <div id="DatosAcademicos">
+>>>>>>> master
                                 <h4>Datos Academicos</h4>
                                 <div class="form-group">
                                     <label>Nivel </label>
@@ -433,8 +498,12 @@
                                     </textarea>
                                 </div>
                             </div>
+<<<<<<< HEAD
                         <button @onclick="@AlertGuardarMiembros" type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
                         <button @onclick="@AlertGuardarMiembros">OLA</button>
+=======
+                            <button type="submit" class="btn btn-success btn-lg btn-block">Guardar Miembro</button>
+>>>>>>> master
                         </form>
                     </div>
                 </div>

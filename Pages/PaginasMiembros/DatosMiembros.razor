@@ -22,6 +22,7 @@
                                 @onclick="(() => SetMiembrosModal(T))"
                         
                                 class="btn btn-link">Informacion Miembros</button></td>
+<<<<<<< HEAD
                     <td>
                         <button class="btn btn-danger" @onclick="(() => BorrarMiembros2(T))">Borrar Miembro</button>
                         <button class="btn btn-warning" data-toggle="modal" data-target="#EditarMiembros" 
@@ -29,6 +30,9 @@
                             Editar Miembro
                         </button>
                     </td>
+=======
+                    <td><button class="btn btn-danger" @onclick="(() => BorrarMiembros2(T))">Borrar Miembro</button></td>
+>>>>>>> master
                 </tr>   
                 }
             }
@@ -39,6 +43,7 @@
 
 <DetallesModal Id="@modalId" ts="@ModalT" />
 
+<<<<<<< HEAD
 <div class="modal fade" id="EditarMiembros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -507,6 +512,9 @@
         </div>
     </div>
 </div>
+=======
+
+>>>>>>> master
 
 
 
@@ -560,7 +568,10 @@
     private async Task BorrarMiembros2(DatosMiembrosIglesia ReporteD )
     {
         await IST.DeleteMiembros(ReporteD);
+<<<<<<< HEAD
         AlertBorrarMiembros();
+=======
+>>>>>>> master
     }
 
     private DatosMiembrosIglesia datos = new DatosMiembrosIglesia();
@@ -577,6 +588,7 @@
             ; Console.WriteLine("Finalizo El Guardado");
 
     }
+<<<<<<< HEAD
     DatosMiembrosIglesia ActualizarMiembros = new DatosMiembrosIglesia();
     
     private void SetM(DatosMiembrosIglesia rv)
@@ -675,4 +687,6 @@
         new NombrePaises() {Paises = "Republica Dominicana"},
         new NombrePaises() {Paises = "Colombia"},
     };
+=======
+>>>>>>> master
 }

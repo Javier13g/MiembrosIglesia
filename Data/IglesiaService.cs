@@ -16,8 +16,11 @@ namespace MiembrosIglesia.Data
         Task<bool> SetMiembros(DatosMiembrosIglesia T);
         
         Task<bool> DeleteMiembros(DatosMiembrosIglesia T);
+<<<<<<< HEAD
         
         Task<bool> EditarMiembros(DatosMiembrosIglesia T);
+=======
+>>>>>>> master
 
 
     }
@@ -81,6 +84,7 @@ namespace MiembrosIglesia.Data
             }
             return Task.FromResult(status);
         }
+<<<<<<< HEAD
         
         public Task<bool> EditarMiembros(DatosMiembrosIglesia T)
         {
@@ -104,6 +108,9 @@ namespace MiembrosIglesia.Data
             }
             return Task.FromResult(status);
         }
+=======
+
+>>>>>>> master
 
     }
 }
