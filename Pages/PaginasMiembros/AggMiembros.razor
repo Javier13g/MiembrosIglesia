@@ -1,8 +1,9 @@
 @using MiembrosIglesia.Data
 @inject IJSRuntime iJSRuntime
 @inject IServicioIglesia IST
+@inject HttpClient http
 
-<button class="mdc-button mdc-button--raised" data-toggle="modal" data-target="#agregarTesoro">
+<button class="mdc-button mdc-button--raised" data-toggle="modal" data-target="#agregarTesoro" @onclick="@GetPaises">
     <span class="mdc-button__label">Agregar Tesoro</span>
 </button>
 
@@ -92,9 +93,9 @@
                                     <label>Pais Origen</label>
                                         <select @bind="datos.PaisOrigenPersona" class="form-control" @onclick="MostrarInputCiudad">
                                             <option>--Seleccione pais de origen--</option>
-                                            @foreach (var item in ListaPaises)
+                                            @foreach (var lista in lista)
                                             {
-                                                <option value="@item.Paises">@item.Paises</option>
+                                                <option value="@lista.name">@lista.name</option>
                                             }
                                         </select>
                                 </div>
@@ -110,9 +111,9 @@
                                     <label>Pais Actual</label>
                                         <select @bind="datos.PaisActualPersona" class="form-control" @onclick="MostrarInputCiudadActual">
                                             <option>--Seleccione pais residencia--</option>
-                                            @foreach (var item in ListaPaises)
+                                            @foreach (var lista in lista)
                                             {
-                                                <option value="@item.Paises">@item.Paises</option>
+                                                <option value="@lista.name">@lista.name</option>
                                             } 
                                         </select>
                                 </div>
@@ -499,6 +500,18 @@
             }
         }
     }
+    List<Pais> lista = new List<Pais>();
+
+    private async Task GetPaises()
+    {
+        lista = await http.GetJsonAsync<List<Pais>>("https://restcountries.eu/rest/v2/all");
+    }
+    
+    public class Pais
+    {
+        public string name { get; set; } = "";
+    }
+    
     public class NombrePaises
     {
         public string Paises { get; set; }

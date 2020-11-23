@@ -4,6 +4,7 @@
 @inject SignInManager<Usuarios> SignInManager
 @inject UserManager<Usuarios> UserManager
 @inject IJSRuntime iJSRuntime;
+@inject HttpClient http
 
 <div>
     <table class="table">
@@ -134,9 +135,9 @@
                         <label>Pais Origen</label>
                         <select @bind="@ActualizarMiembros.PaisOrigenPersona" class="form-control" @onclick="MostrarInputCiudad">
                             <option>--Seleccione pais de origen--</option>
-                            @foreach (var item in ListaPaises)
+                            @foreach (var lista in lista)
                             {
-                                <option value="@item.Paises">@item.Paises</option>
+                                <option value="@lista.name">@lista.name</option>
                             }
                         </select>
                     </div>
@@ -153,9 +154,9 @@
                         <label>Pais Actual</label>
                         <select @bind="@ActualizarMiembros.PaisActualPersona" class="form-control" @onclick="MostrarInputCiudadActual">
                             <option>--Seleccione pais residencia--</option>
-                            @foreach (var item in ListaPaises)
+                            @foreach (var lista in lista)
                             {
-                                <option value="@item.Paises">@item.Paises</option>
+                                <option value="@lista.name">@lista.name</option>
                             }
                         </select>
                     </div>
@@ -514,8 +515,6 @@
 </div>
 
 
-
-
 @code
 {
     [Parameter]
@@ -534,7 +533,21 @@
         user = await UserManager.GetUserAsync(authState.User);
         Uid = user.Id_Usuario;
         bColor = user.Color_Usuario;
+        GetPaises();
     }
+    
+    List<Pais> lista = new List<Pais>();
+
+    private async Task GetPaises()
+    {
+        lista = await http.GetJsonAsync<List<Pais>>("https://restcountries.eu/rest/v2/all");
+    }
+    
+    public class Pais
+    {
+        public string name { get; set; } = "";
+    }
+    
 
     List<DatosMiembrosIglesia> miembrosIglesias = new List<DatosMiembrosIglesia>();
     DatosMiembrosIglesia ModalT = new DatosMiembrosIglesia();
@@ -591,6 +604,7 @@
     private void SetM(DatosMiembrosIglesia rv)
     {
         ActualizarMiembros = rv;
+        
     }
     
     private async Task HandleSubmit()
@@ -673,16 +687,5 @@
         await iJSRuntime.InvokeVoidAsync("Mostrar2");
 
     }
-    
-    public class NombrePaises
-    {
-        public string Paises { get; set; }
-    }
-
-    List<NombrePaises> ListaPaises = new List<NombrePaises>()
-    {
-        new NombrePaises() {Paises = "Republica Dominicana"},
-        new NombrePaises() {Paises = "Colombia"},
-    };
 
 }
