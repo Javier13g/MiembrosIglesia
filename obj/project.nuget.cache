@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "QZEMcAJ71aNrLp7FWlNqSxM9Z8Ts0ngkol+eJqD0BRmezi/TKxbIMtENonOf+i7hpTme799xh94v9NAw52dr2A==",
+  "dgSpecHash": "Tyi2IXtMBpd7b0wPSjKbt5dK1Bf9VLTGONEyRfoP7luBAE4XOvJ76qP6kLKGW00YefH2rtUpbHzgw3+uLo5KKA==",
   "success": true,
   "projectFilePath": "/home/itachi/Documentos/GitHub/MiembrosIglesia/MiembrosIglesia.csproj",
   "expectedPackageFiles": [
+    "/home/itachi/.nuget/packages/microsoft.aspnetcore.blazor.httpclient/3.2.0-preview3.20168.3/microsoft.aspnetcore.blazor.httpclient.3.2.0-preview3.20168.3.nupkg.sha512",
     "/home/itachi/.nuget/packages/microsoft.aspnetcore.cryptography.internal/3.1.10/microsoft.aspnetcore.cryptography.internal.3.1.10.nupkg.sha512",
     "/home/itachi/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/3.1.10/microsoft.aspnetcore.cryptography.keyderivation.3.1.10.nupkg.sha512",
     "/home/itachi/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/3.1.10/microsoft.aspnetcore.diagnostics.entityframeworkcore.3.1.10.nupkg.sha512",

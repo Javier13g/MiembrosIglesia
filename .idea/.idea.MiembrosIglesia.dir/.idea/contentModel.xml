@@ -98,6 +98,7 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="wwwroot" t="Include">
         <e p="Error.gif" t="Include" />
+        <e p="Jonathan Lopez.docx" t="Include" />
         <e p="css" t="Include">
           <e p="bootstrap" t="Include">
             <e p="bootstrap.min.css" t="Include" />
@@ -126,10 +127,6 @@
         <e p="js" t="Include">
           <e p="Javascript.js" t="Include" />
         </e>
-<<<<<<< HEAD
-        <e p="sesion.gif" t="Include" />
-=======
->>>>>>> master
       </e>
     </e>
   </component>

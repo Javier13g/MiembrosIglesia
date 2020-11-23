@@ -442,3 +442,4 @@
 /home/itachi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/staticwebassets/MiembrosIglesia.StaticWebAssets.xml
 /home/itachi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/MiembrosIglesia.dll
 /home/itachi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/MiembrosIglesia.pdb
+/home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Blazor.HttpClient.dll

@@ -14,15 +14,8 @@ namespace MiembrosIglesia.Data
         Task<List<DatosMiembrosIglesia>> GetAllMiembros(Guid Uid);
         Task<DatosMiembrosIglesia> GetMiembros(Guid Tid);
         Task<bool> SetMiembros(DatosMiembrosIglesia T);
-        
         Task<bool> DeleteMiembros(DatosMiembrosIglesia T);
-<<<<<<< HEAD
-        
         Task<bool> EditarMiembros(DatosMiembrosIglesia T);
-=======
->>>>>>> master
-
-
     }
 
     public class IglesiaService : IServicioIglesia
@@ -84,8 +77,6 @@ namespace MiembrosIglesia.Data
             }
             return Task.FromResult(status);
         }
-<<<<<<< HEAD
-        
         public Task<bool> EditarMiembros(DatosMiembrosIglesia T)
         {
             bool status = false;
@@ -108,9 +99,5 @@ namespace MiembrosIglesia.Data
             }
             return Task.FromResult(status);
         }
-=======
-
->>>>>>> master
-
     }
 }

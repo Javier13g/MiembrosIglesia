@@ -98,7 +98,7 @@ function MostrarDetallesFamiliares()
     document.getElementById('DetallesFamiliares').style = 'block'
 }
 
-<<<<<<< HEAD
+
 function AlertBorrarMiembros() {
     
     alertify.alert('Exito', function () { alertify.success('Registro Eliminado'); });
@@ -109,8 +109,3 @@ function AlertGuardarMiembros() {
     alertify.alert('Aviso!!!','Exito!', function () { alertify.success('Registro Guardado'); });
 
 }
-
-
-
-=======
->>>>>>> master
