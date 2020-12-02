@@ -2,11 +2,12 @@
 
 <AuthorizeView>
     <Authorized>
-        <h3 href="Identity/Account/Manage">Hello, @context.User.Identity.Name!, sus tesoros estan a salvo con nosotros</h3>
+        <h3 href="Identity/Account/Manage">Hello, @context.User.Identity.Name!, los datos de sus miembros estan a salvo con nosotros</h3>
         <button class="mdc-button mdc-button--raised">
-            <span class="mdc-button__label">Contained Button</span>
-        </button>
-        <button class="btn btn-primary">Contained Button</button>
+            <NavLink class="nav-link" href="indexIglesia">
+                <span class="mdc-button__label">Miembros</span>
+            </NavLink>
+            </button>
     </Authorized>
     <NotAuthorized>
         <h2>No has iniciado sesion, no puede visualizar los miembros de su iglesia</h2>

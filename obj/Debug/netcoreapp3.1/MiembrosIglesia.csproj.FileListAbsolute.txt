@@ -223,7 +223,6 @@
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/appsettings.json
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
-/home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/app.db
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/MiembrosIglesia.StaticWebAssets.xml
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/MiembrosIglesia
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/MiembrosIglesia.deps.json
@@ -443,3 +442,4 @@
 /home/itachi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/MiembrosIglesia.dll
 /home/itachi/Documentos/GitHub/MiembrosIglesia/obj/Debug/netcoreapp3.1/MiembrosIglesia.pdb
 /home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Blazor.HttpClient.dll
+/home/itachi/Documentos/GitHub/MiembrosIglesia/bin/Debug/netcoreapp3.1/BlazorInputFile.dll

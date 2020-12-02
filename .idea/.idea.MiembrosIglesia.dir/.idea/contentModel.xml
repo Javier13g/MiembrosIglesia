@@ -45,8 +45,8 @@
       </e>
       <e p="MiembrosIglesia.csproj" t="IncludeRecursive" />
       <e p="Migrations" t="Include">
-        <e p="20201112060111_InitialCreate.Designer.cs" t="Include" />
-        <e p="20201112060111_InitialCreate.cs" t="Include" />
+        <e p="20201128030743_InitialCreate.Designer.cs" t="Include" />
+        <e p="20201128030743_InitialCreate.cs" t="Include" />
         <e p="ApplicationDbContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Pages" t="Include">
@@ -71,6 +71,11 @@
       </e>
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
+        <e p="PublishProfiles" t="Include">
+          <e p="prueba.pubxml" t="Include" />
+          <e p="test2.pubxml" t="Include" />
+          <e p="test3.pubxml" t="Include" />
+        </e>
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="README.md" t="Include" />
@@ -98,7 +103,6 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="wwwroot" t="Include">
         <e p="Error.gif" t="Include" />
-        <e p="Jonathan Lopez.docx" t="Include" />
         <e p="css" t="Include">
           <e p="bootstrap" t="Include">
             <e p="bootstrap.min.css" t="Include" />

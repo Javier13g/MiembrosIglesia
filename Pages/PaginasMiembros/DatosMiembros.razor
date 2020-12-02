@@ -9,21 +9,22 @@
 <div>
     <table class="table">
         <thead>
-            <th>Id miembro</th>
+        <th>Id miembro</th>
         <th>Datos</th>
         <th>Opciones</th>
         </thead>
         <tbody>
-            @if(miembrosIglesias.Count > 0){
-                @foreach (DatosMiembrosIglesia T in miembrosIglesias)
-                {
+        @if(miembrosIglesias.Count > 0){
+            @foreach (DatosMiembrosIglesia T in miembrosIglesias)
+            {
                 <tr>
                     <td>@T.Id</td>
+                    
                     <td><button data-toggle="modal" data-target="#MiembroModalDetalle" 
                                 @onclick="(() => SetMiembrosModal(T))"
                         
                                 class="btn btn-link">Informacion Miembros</button>
-                        </td>
+                    </td>
                     <td>
                         <button class="btn btn-danger" @onclick="(() => BorrarMiembros2(T))">Borrar Miembro</button>
                         <button class="btn btn-warning" data-toggle="modal" data-target="#EditarMiembros" 
@@ -35,9 +36,10 @@
                     
 
                 </tr>   
-                }
             }
+        }
         </tbody>
+        
     </table>
 </div>
 

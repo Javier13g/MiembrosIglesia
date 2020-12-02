@@ -49,6 +49,7 @@ namespace MiembrosIglesia.Data
 
         /*DATOS PERSONALES*/
         public string SexoPersona { get; set; }
+        
 
         public string NombrePersona { get; set; }
 

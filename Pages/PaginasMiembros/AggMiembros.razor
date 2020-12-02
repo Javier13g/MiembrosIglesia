@@ -2,7 +2,8 @@
 @inject IJSRuntime iJSRuntime
 @inject IServicioIglesia IST
 @inject HttpClient http
-
+@using System.IO
+@using BlazorInputFile
 <button class="mdc-button mdc-button--raised" data-toggle="modal" data-target="#agregarTesoro" @onclick="@GetPaises">
     <span class="mdc-button__label">Agregar Tesoro</span>
 </button>
@@ -56,6 +57,7 @@
                         <form class="was-validated" @onsubmit="HandleSubmit">
                             <div id="DatosPersonales">
                                 <h4>Datos Personales</h4>
+                                
                                 <div class="form-group">
                                     <label>Sexo</label>
                                         <select @bind="datos.SexoPersona" class="form-control">
@@ -466,9 +468,10 @@
         FechaNacimientoPersona = DateTime.Today,
         FechaAceptacion = DateTime.Today,
         FechaBautismo = DateTime.Today,
-        FechaConversion = DateTime.Today
+        FechaConversion = DateTime.Today,
     };
 
+     
     private async Task HandleSubmit()
     {
         Console.WriteLine("Se Inicio El Guardado");
@@ -481,7 +484,8 @@
                 FechaNacimientoPersona = DateTime.Today,
                 FechaAceptacion = DateTime.Today,
                 FechaBautismo = DateTime.Today,
-                FechaConversion = DateTime.Today
+                FechaConversion = DateTime.Today,
+                
             };
             StateHasChanged();
         }
@@ -512,17 +516,6 @@
         public string name { get; set; } = "";
     }
     
-    public class NombrePaises
-    {
-        public string Paises { get; set; }
-    }
-
-    List<NombrePaises> ListaPaises = new List<NombrePaises>()
-    {
-    new NombrePaises() {Paises = "Republica Dominicana"},
-    new NombrePaises() {Paises = "Colombia"},
-    };
-
     /*LLAMADA FUNCIONES JAVASCRIPT*/
     private async Task MostrarDatosFamiliares()
     {

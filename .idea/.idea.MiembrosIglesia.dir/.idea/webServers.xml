@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a77d0319-04fb-4fc6-8641-ba13e5b5ffdf" name="ola" url="http://iglesiaservicio.somee.com/">
+        <fileTransfer host="ftp://iglesiaservicio.somee.com/www.IglesiaServicio.somee.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
